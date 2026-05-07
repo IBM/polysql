@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polysql"
+version = "1.0.0"
+authors = [
+  { name="Your Name", email="your.email@example.com" },
+]
+description = "Cross-dialect SQL evaluation framework for text-to-SQL benchmarks"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["text-to-sql", "sql", "benchmark", "cross-dialect", "evaluation"]
+
+dependencies = [
+    # Database backends (basic set without MySQL to avoid mysqlclient build requirement)
+    "ibis-framework[sqlite,duckdb,postgres]>=10.0.0",
+    "duckdb>=1.0.0",
+
+    # SQL tooling
+    "sqlglot>=20.0.0",
+
+    # Data processing
+    "pandas>=2.0.0",
+    "tqdm",
+
+    # Data loading
+
+    # Utilities
+    "names_generator==0.2.0",
+    "packaging",
+    "func_timeout",
+
+    # Visualization (optional)
+    "streamlit>=1.28.0",
+    "plotly>=5.0.0",
+
+    # Code formatting
+    "ruff",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.5.0",
+]
+mysql = [
+    "pymysql",
+    "mysqlclient",
+    "ibis-framework[mysql]",
+]
+all-backends = [
+    "ibis-framework[bigquery,snowflake,databricks,clickhouse,pyspark]",
+    "pyspark",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/polysql"
+Repository = "https://github.com/yourusername/polysql"
+"Bug Tracker" = "https://github.com/yourusername/polysql/issues"
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    # Ignore SQLAlchemy MetaData warnings from dlt
+    "ignore:Table .* already exists within the given MetaData:sqlalchemy.exc.SAWarning",
+    # Ignore MySQL timezone warnings from ibis
+    "ignore:Unable to set session timezone to UTC:UserWarning",
+    # Ignore dlt type inference warnings (expected for sparse data)
+    "ignore:.*could not have their types inferred:UserWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]

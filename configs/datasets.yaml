@@ -1,0 +1,150 @@
+# Dataset Configuration
+#
+# This file defines configurations for different datasets used in NL2DSL evaluation.
+# Each dataset can have different source database types, gold query dialects, and field mappings.
+
+datasets:
+  # BIRD Development Set (default configuration)
+  bird_dev:
+    name: "bird_dev"
+    data_path: "data/BIRD/dev_20240627/dev.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # Archer Development Set
+  archer_dev_s_and_c:
+    name: "archer_dev_s_and_c"
+    data_path: "data/archer/en_data/dev_simple_and_commonsense.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "idx"
+    db_id_field: "db_id"
+
+  # Spider Development Set
+  spider_dev:
+    name: "spider_dev"
+    data_path: "data/spider/dev.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "idx"
+    db_id_field: "db_id"
+
+  # Spider Train Set
+  spider_train:
+    name: "spider_train"
+    data_path: "data/spider/train_spider.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "idx"
+    db_id_field: "db_id"
+
+  # Beaver DW Development Set
+  beaver_dw:
+    name: "beaver_dw"
+    data_path: "data/beaver/dev_dw.json"
+    source_db_type: "mysql"
+    gold_query_dialect: "mysql"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # Beaver NW Development Set
+  beaver_nw:
+    name: "beaver_nw"
+    data_path: "data/beaver/dev_nw.json"
+    source_db_type: "mysql"
+    gold_query_dialect: "mysql"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # BIRD Mini Dev - SQLite
+  bird_mini_dev_sqlite:
+    name: "bird_mini_dev_sqlite"
+    data_path: "data/MINIDEV/mini_dev_sqlite.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # BIRD Mini Dev - MySQL
+  bird_mini_dev_mysql:
+    name: "bird_mini_dev_mysql"
+    data_path: "data/MINIDEV/mini_dev_mysql.json"
+    source_db_type: "mysql"
+    gold_query_dialect: "mysql"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # BIRD Mini Dev - PostgreSQL
+  bird_mini_dev_postgres:
+    name: "bird_mini_dev_postgres"
+    data_path: "data/MINIDEV/mini_dev_postgresql.json"
+    source_db_type: "postgres"
+    gold_query_dialect: "postgres"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
+
+  # Spider2-Lite Local (SQLite only, with pre-computed gold results)
+  spider2_lite:
+    name: "spider2_lite"
+    data_path: "data/spider2_lite/spider2-lite-local.jsonl"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "question"
+    question_id_field: "instance_id"
+    db_id_field: "db"
+    use_precomputed_gold: true
+    gold_results_path: "data/spider2_lite/exec_result"
+
+  # LLMSQL Test Set (single SQLite database with all tables)
+  llmsql:
+    name: "llmsql"
+    data_path: "data/llmsql/llmsql_test.json"
+    source_db_type: "sqlite"
+    gold_query_dialect: "sqlite"
+    gold_query_type: "sql"
+    db_path_field: "db_path"
+    gold_query_field: "sql_query"
+    nl_query_field: "nl_query"
+    question_id_field: "question_id"
+    db_id_field: "db_id"
